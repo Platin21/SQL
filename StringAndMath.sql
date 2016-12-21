@@ -21,6 +21,9 @@ FROM `ahPersonal`;
 
 SELECT `abtname`, INSERT(`abtname`,1,0,'sm_') AS 'Abtname mit Präfix' 
 FROM `ahAbteilung`;
+
+SELECT UPPER(`panme`) AS 'Nachname',LOWER(`pvname`) AS 'Geschlecht' FROM `ahPersonal`;
+
 -- End Of Lesson !
 
 -- 1.

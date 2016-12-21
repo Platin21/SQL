@@ -56,4 +56,6 @@ SELECT `pname`,`gehalt`, (`gehalt` / 100) * 5 + `gehalt` AS '5% Erhöht' FROM `a
 SELECT `pname`,`gehalt`,`gehalt` + 50 FROM `ahPersonal` WHERE `gehalt` >= 4000;
 
 -- 9.
-SELECT SUM(`gehalt`) FROM `ahPersonal` WHERE `gehalt` < 3000;
+SELECT SUM(((`gehalt` / 100) * 10) + `gehalt`) FROM `ahPersonal` WHERE `gehalt` < 3000;
+
+-- 10.

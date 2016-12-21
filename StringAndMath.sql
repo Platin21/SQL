@@ -31,16 +31,29 @@ SELECT `tbez` AS 'tbez',LENGTH(`tbez`) AS 'Stellenanzahl' FROM `ahTaetigkeitsart
 
 -- 2. 
 SELECT 
-CONCAT(UPPER(`pname`),' ',`pvname`,'.',`geschlecht`,'.',`gehalt`) 
+CONCAT(UPPER(`pname`),' ',`pvname`,'.',LOWER(`geschlecht`),'.',`gehalt`) 
 FROM `ahPersonal`;
 
 -- 3.
 SELECT `tbez` 
-FROM `ahPersonal` 
+FROM `ahTaetigkeitsarten` 
 WHERE NOT INSTR(`tbez`,'Projekt') = 0;
 
 -- 4.
-SELECT `abtnr`,`tbez`,CONCAT(LEFT(`tbez`,1),LEFT(`tbez`,2),'.') AS 'Abkuerzung';
+SELECT `abtnr`,`tbez`,CONCAT(LEFT(`tbez`,1),LEFT(`tbez`,2),'.') AS 'Abkuerzung' FROM `ahTaetigkeitsarten`;
 
 -- 5. 
-SELECT 
+SELECT `pvname`,`pname`,CONCAT(RIGHT(`pvname`,1),SUBSTR(`pname`,1,2),SUBSTR(`pvname`,LENGTH(`pvname`)-4,LENGTH(`pvname`)),SUBSTR(`pname`,1,4)) FROM `ahTaetigkeitsarten`;
+
+-- 6. 
+SELECT `tbez` AS 'tbez',CONCAT(UPPER(LEFT(`tbez`,2)),SUBSTR(`tbez`,3,LENGTH(`tbez`))) AS 'tbez modifiziert' FROM `ahTaetigkeitsarten`;
+
+
+-- 7.
+SELECT `pname`,`gehalt`, (`gehalt` / 100) * 5 + `gehalt` AS '5% Erhöht' FROM `ahPersonal`;
+
+-- 8.
+SELECT `pname`,`gehalt`,`gehalt` + 50 FROM `ahPersonal` WHERE `gehalt` >= 4000;
+
+-- 9.
+SELECT SUM(`gehalt`) FROM `ahPersonal` WHERE `gehalt` < 3000;

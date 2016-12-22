@@ -40,7 +40,10 @@ CREATE TABLE geoFigur
     wert3 INT
 );
 
-INSERT INTO `geoFigur` VALUES(NULL,'Quadrat','Quadrat',5,0,0);
+INSERT INTO `geoFigur` VALUES(NULL,'Quadrat','Quadrat',5,6,0);
 INSERT INTO `geoFigur` VALUES(NULL,'Rechteck','Rechteck',5,0,0);
-
--- 10.
+INSERT INTO `geoFigur` VALUES(NULL,'Kreis','Kreis',5,0,0);
+INSERT INTO `geoFigur` VALUES(NULL,'Würfel','Würfel',5,0,0);
+INSERT INTO `geoFigur` VALUES(NULL,'Quader','Quader',5,5,5);
+INSERT INTO `geoFigur` VALUES(NULL,'Kugel','Kugel',3,0,0);
+-- 11.

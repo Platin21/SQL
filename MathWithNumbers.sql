@@ -33,7 +33,14 @@ SELECT SUM(`gehalt`) / COUNT(*) FROM `ahPersonal` WHERE `gehalt` < 3000;
 CREATE TABLE geoFigur
 (
 	nummer INT PRIMARY KEY AUTO_INCREMENT,
-    _type INT,
-    bez
-)
+    _type ENUM('Quadrat','Rechteck','Kreis','Würfel','Quader','Kugel'),
+    bez   VARCHAR(16),
+    wert1 INT,
+    wert2 INT,
+    wert3 INT
+);
+
+INSERT INTO `geoFigur` VALUES(NULL,'Quadrat','Quadrat',5,0,0);
+INSERT INTO `geoFigur` VALUES(NULL,'Rechteck','Rechteck',5,0,0);
+
 -- 10.

@@ -48,19 +48,4 @@ SELECT `pvname`,`pname`,CONCAT(RIGHT(`pvname`,1),SUBSTR(`pname`,1,2),SUBSTR(`pvn
 -- 6. 
 SELECT `tbez` AS 'tbez',CONCAT(UPPER(LEFT(`tbez`,2)),SUBSTR(`tbez`,3,LENGTH(`tbez`))) AS 'tbez modifiziert' FROM `ahTaetigkeitsarten`;
 
-
--- 7.
-SELECT `pname`,`gehalt`, (`gehalt` / 100) * 5 + `gehalt` AS '5% Erhöht' FROM `ahPersonal`;
-
--- 8.
-SELECT `pname`,`gehalt`,`gehalt` + 50 FROM `ahPersonal` WHERE `gehalt` >= 4000;
-
--- 9.
-SELECT SUM(((`gehalt` / 100) * 10) + `gehalt`) FROM `ahPersonal` WHERE `gehalt` < 3000;
-
-CREATE TABLE geoFigur
-(
-	nummer INT PRIMARY KEY,
-    
-)
--- 10.
+-- Lookup -> https://github.com/Platin21/SQL

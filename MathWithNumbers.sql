@@ -46,4 +46,81 @@ INSERT INTO `geoFigur` VALUES(NULL,'Kreis','Kreis',5,0,0);
 INSERT INTO `geoFigur` VALUES(NULL,'Würfel','Würfel',5,0,0);
 INSERT INTO `geoFigur` VALUES(NULL,'Quader','Quader',5,5,5);
 INSERT INTO `geoFigur` VALUES(NULL,'Kugel','Kugel',3,0,0);
+
+SELECT `nummer`,`wert1`,`wert2`,`wert3`, 
+	CASE `_type` 
+    WHEN 'Quadrat'  THEN `wert1` * `wert2`
+    WHEN 'Rechteck' THEN `wert1` * `wert1` 
+    WHEN 'Kreis' 	THEN `wert1` * `wert1` * PI()
+    WHEN 'Würfel' 	THEN `wert1` * `wert1` * `wert1`
+    WHEN 'Quader' 	THEN `wert1` * `wert1` * `wert3`
+    WHEN 'Kugel'  	THEN 4/3 * PI() * (`wert1` * `wert1` * `wert1`)
+    ELSE ' '
+    END 
+FROM `geoFigur`;
+ 
 -- 11.
+SELECT FLOOR(AVG(`gehalt`)) FROM `ahPersonal`;
+
+-- 12. 
+SELECT `gehalt`, ROUND(`gehalt`/1000,0) FROM `ahPersonal`;
+
+-- 13.
+DROP TABLE Zufall;
+CREATE TABLE Zufall
+(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    zufallszahl INT
+);
+
+
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
+
+SELECT * FROM Zufall;
+
+-- How knows waht erwarter Durschnitts Wert ist
+SELECT ROUND(AVG(`zufallszahl`),2) AS 'Schnitt' ,499.34 AS 'erwartet', ROUND(AVG(`zufallszahl`) - 499.34 ,2) AS 'Differenz' FROM `Zufall`; 
+
+-- Musterverlgeich
+-- 14. 
+SELECT `pname` FROM `ahPersonal` 
+WHERE RIGHT(`pname`,2) = 'er';
+
+-- 15.
+SELECT `pname` FROM `ahPersonal` 
+WHERE FIND_IN_SET(`pname`,'Mayer','Meyer','Meier') > 0;
+
+-- 16. 
+
+SELECT `pname` FROM `ahPersonal` 
+WHERE FIND_IN_SET(LEFT(`pname`,1),'F','S') > 0;
+
+-- 17.
+SELECT
+CASE `vwgrad` WHEN 's' THEN `persnr`
+WHEN 't' THEN `persnr`
+END
+FROM `ahFamilienmitglieder` 
+WHERE `vwgrad` = 's' OR `vwgrad` = 't'; 
+
+-- 18.
+SELECT `pname`,`pvname` FROM `ahPersonal`
+WHERE `eintritt` IN (1980,1990);
+
+-- 19.
+SELECT `persnr`,  `tstd` 
+FROM `ahPersonal` 
+WHERE `persnr` = 1 AND `aufnr` = 3333;
+
+-- 20.
+
+

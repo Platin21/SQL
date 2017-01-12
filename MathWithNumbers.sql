@@ -60,13 +60,21 @@ SELECT `nummer`,`wert1`,`wert2`,`wert3`,
 FROM `geoFigur`;
  
 -- 11.
-SELECT FLOOR(AVG(`gehalt`)) FROM `ahPersonal`;
+SELECT 
+FLOOR(AVG(`gehalt`)) 
+FROM `ahPersonal`;
 
--- 12. 
-SELECT `gehalt`, ROUND(`gehalt`/1000,0) FROM `ahPersonal`;
+-- 12.
+# Rounding for only one 
+SELECT `gehalt`, 
+ROUND(`gehalt`/1000,0) 
+FROM `ahPersonal`;
 
 -- 13.
+# For Safty Reasons an Drop 
 DROP TABLE Zufall;
+
+# It would be also Possible that we do Hier IF EXISTS but how cares
 CREATE TABLE Zufall
 (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -74,6 +82,7 @@ CREATE TABLE Zufall
 );
 
 
+# A bunch of inserts they are all randomly Generated in a Range from 0 to 999
 INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
 INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
 INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
@@ -87,8 +96,11 @@ INSERT INTO `Zufall` VALUES(NULL,FLOOR(RAND() * 999));
 
 SELECT * FROM Zufall;
 
--- How knows waht erwarter Durschnitts Wert ist
-SELECT ROUND(AVG(`zufallszahl`),2) AS 'Schnitt' ,499.34 AS 'erwartet', ROUND(AVG(`zufallszahl`) - 499.34 ,2) AS 'Differenz' FROM `Zufall`; 
+-- Wer weiß was erwarter Durschnitts Wert ist ? 
+SELECT ROUND(AVG(`zufallszahl`),2) AS 'Schnitt' ,
+499.34 AS 'erwartet',
+ROUND(AVG(`zufallszahl`) - 499.34 ,2) AS 'Differenz'
+FROM `Zufall`; 
 
 -- Musterverlgeich
 -- 14. 
@@ -97,12 +109,14 @@ WHERE RIGHT(`pname`,2) = 'er';
 
 -- 15.
 SELECT `pname` FROM `ahPersonal` 
-WHERE FIND_IN_SET(`pname`,'Mayer','Meyer','Meier') > 0;
+WHERE FIND_IN_SET(`pname`,'Mayer,Meyer,Meier') != 0;
 
 -- 16. 
-
+# FIND_IN_SET Does not Work Like it should it normaly returns 
+# a count but here it is only 0
+# Probabbly IN would work but how knows if in Works
 SELECT `pname` FROM `ahPersonal` 
-WHERE FIND_IN_SET(LEFT(`pname`,1),'F','S') > 0;
+WHERE FIND_IN_SET(LEFT(`pname`,1),'F,S') != 0;
 
 -- 17.
 SELECT

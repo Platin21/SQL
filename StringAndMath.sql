@@ -58,4 +58,9 @@ SELECT `pname`,`gehalt`,`gehalt` + 50 FROM `ahPersonal` WHERE `gehalt` >= 4000;
 -- 9.
 SELECT SUM(((`gehalt` / 100) * 10) + `gehalt`) FROM `ahPersonal` WHERE `gehalt` < 3000;
 
+CREATE TABLE geoFigur
+(
+	nummer INT PRIMARY KEY,
+    
+)
 -- 10.

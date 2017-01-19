@@ -21,15 +21,19 @@ SELECT CONCAT(IF(`geschlecht`='w','FRAU','MAN'),' ',`pname`) AS 'Anrede' FROM `a
 
 
 -- 7.
+# Add 5% to `gehalt`
 SELECT `pname`,`gehalt`, (`gehalt` / 100) * 5 + `gehalt` AS '5% Erhöht' FROM `ahPersonal`;
 
 -- 8.
+# Add Some money to `gehalt` (50 Dollars)
 SELECT `pname`,`gehalt`,`gehalt` + 50 FROM `ahPersonal` WHERE `gehalt` >= 4000;
 
 -- 9.
+# Calc of Average 'gehalt'
 SELECT SUM(`gehalt`) / COUNT(*) FROM `ahPersonal` WHERE `gehalt` < 3000;
 
 -- 10.
+# Add the Table geoFigur
 CREATE TABLE geoFigur
 (
 	nummer INT PRIMARY KEY AUTO_INCREMENT,
@@ -40,6 +44,7 @@ CREATE TABLE geoFigur
     wert3 INT
 );
 
+# Create some Geofigures (Insert them)
 INSERT INTO `geoFigur` VALUES(NULL,'Quadrat','Quadrat',5,6,0);
 INSERT INTO `geoFigur` VALUES(NULL,'Rechteck','Rechteck',5,0,0);
 INSERT INTO `geoFigur` VALUES(NULL,'Kreis','Kreis',5,0,0);
@@ -47,6 +52,7 @@ INSERT INTO `geoFigur` VALUES(NULL,'Würfel','Würfel',5,0,0);
 INSERT INTO `geoFigur` VALUES(NULL,'Quader','Quader',5,5,5);
 INSERT INTO `geoFigur` VALUES(NULL,'Kugel','Kugel',3,0,0);
 
+# Calculations for all Geo Figures i used CASE here
 SELECT `nummer`,`wert1`,`wert2`,`wert3`, 
 	CASE `_type` 
     WHEN 'Quadrat'  THEN `wert1` * `wert2`
@@ -60,12 +66,13 @@ SELECT `nummer`,`wert1`,`wert2`,`wert3`,
 FROM `geoFigur`;
  
 -- 11.
+# Use of Floor to get and Value Rounded there are 3 Way's FLOOR() CEIL() ROUND()
 SELECT 
 FLOOR(AVG(`gehalt`)) 
 FROM `ahPersonal`;
 
 -- 12.
-# Rounding for only one 
+# Rounding for only one decimal Number
 SELECT `gehalt`, 
 ROUND(`gehalt`/1000,0) 
 FROM `ahPersonal`;
@@ -137,4 +144,5 @@ WHERE `persnr` = 1 AND `aufnr` = 3333;
 
 -- 20.
 
+# Missing but Easy to Make
 

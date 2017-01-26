@@ -183,11 +183,11 @@ CASE `vwgrad` WHEN 's' THEN `persnr`
 WHEN 't' THEN `persnr`
 END
 FROM `ahFamilienmitglieder` 
-WHERE `vwgrad` = 's' OR `vwgrad` = 't'; 
+WHERE `vwgrad` IN('s','t') GROUP BY `vwgrad`; 
 
 -- 18.
 SELECT `pname`,`pvname` FROM `ahPersonal`
-WHERE `eintritt` IN (1980,1990);
+WHERE YEAR(`eintritt`) IN (1980,1990);
 
 -- 19.
 SELECT `persnr`,  `tstd` 
@@ -196,7 +196,13 @@ WHERE `persnr` = 1 AND `aufnr` = 3333;
 
 -- 20.
 
-# Missing but Easy to Make
-
+# Missing but Easy to Make ? 
+SELECT 
+    `persnr` 
+FROM
+    `ahTaetigkeitsposten`
+WHERE 
+    ( `tbnr` ) BETWEEN '' AND '' ) AND # Is not Possible wrong dataformat INT(4) !NO COMPARISON POSSIBLE
+    ( `aufnr` IN(1111,2222));
 
 

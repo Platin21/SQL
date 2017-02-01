@@ -4,3 +4,7 @@ FROM
     `ahTaetigkeitsposten`,
     `ahTaetigkeitsposten`;
     
+SELECT 
+	`abtnr`,`abtname`,`pname`
+FROM 
+	;

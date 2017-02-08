@@ -43,10 +43,14 @@ WHERE
 # --------------------------------------------------------------------------------------    
 SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 SELECT 
-    `playerno`, SUM(`amount`)
+    `name`, SUM(`amount`) AS 'Strafe'
 FROM
-    `penalties`
-GROUP BY `amount` ASC;
+    `penalties` `pa`,
+    `players` `pl`
+WHERE
+    `pa`.`playerno` = `pl`.`playerno`
+GROUP BY `pa`.`playerno`
+ORDER BY SUM(`amount`) ASC;
 
 # 5. Gesucht sind alle Spieler, die noch nie ein Match bestritten haben. (Ersetze null-Werte mit
 # 0 Zeichen)
@@ -79,7 +83,6 @@ WHERE
     `m`.`playerno` = `p`.`playerno` AND 
     `p`.`playerno` = `t`.`playerno`
 GROUP BY `p`.`name`;
-
 
 
 

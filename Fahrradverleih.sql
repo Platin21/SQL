@@ -1,17 +1,18 @@
--- MySQL Workbench Forward Engineering
--- -----------------------------------------------------
-
-DROP SCHEMA IF EXISTS `Fahrradverleih` ;
+#SAFE MODE!
+DROP DATABASE IF EXISTS `Fahrradverleih`;
 
 -- -----------------------------------------------------
 -- Schema Fahrradverleih
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Fahrradverleih`;
+CREATE DATABASE IF NOT EXISTS `Fahrradverleih`;
 USE `Fahrradverleih` ;
 
 -- -----------------------------------------------------
 -- Typen
 -- -----------------------------------------------------
+#SAFE MODE!
+DROP TABLE IF EXISTS `Typen`;
+
 CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Typen`
 (
   `TypenID` INT AUTO_INCREMENT,
@@ -24,6 +25,9 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Typen`
 -- -----------------------------------------------------
 -- Fahrrad
 -- -----------------------------------------------------
+#SAFE MODE!
+DROP TABLE IF EXISTS `Fahrrad`;
+
 CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Fahrrad`
 (
   `FahrradId` INT AUTO_INCREMENT,
@@ -43,6 +47,9 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Fahrrad`
 -- -----------------------------------------------------
 -- Kunde
 -- -----------------------------------------------------
+#SAFE MODE!
+DROP TABLE IF EXISTS `Kunde`;
+
 CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Kunde`
 (
   `kundenNummer` INT AUTO_INCREMENT,
@@ -59,6 +66,9 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Kunde`
 -- -----------------------------------------------------
 -- Kunde_hat_Fahrrad
 -- -----------------------------------------------------
+#SAFE MODE!
+DROP TABLE IF EXISTS `Verleih`;
+
 CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Verleih`
 (
   `VerleihID`		   INT AUTO_INCREMENT,

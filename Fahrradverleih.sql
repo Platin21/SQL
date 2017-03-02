@@ -134,14 +134,6 @@ INSERT INTO Fahrrad VALUES (NULL, 6 ,20180197 ,19);
 -- -----------------------------------------------------
 #  INSERT's Verleih
 -- -----------------------------------------------------
-# `VerleihID`		   INT AUTO_INCREMENT,			   #
-# `StartDatum` 		   DATE,						   #
-# `Mahung`     		   BOOL,						   #
-# `Kunde_kundenNummer` INT NOT NULL,				   #
-# `Fahrrad_FahrradId`  INT NOT NULL,				   #
-# `Preis` 	   		   INT,							   #
-# `EndDatum`   		   DATE,						   #
--- -----------------------------------------------------
 INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,3 ,7, 34  ,2067-04-22 );
 INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,1 ,6, 54  ,2067-04-22 );
 INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,5 ,1, 67  ,2067-04-22 );

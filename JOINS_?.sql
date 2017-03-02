@@ -76,29 +76,28 @@ WHERE
         AND `personal`.`persnr` = 10
 GROUP BY `pname`;
 
-
-SELECT 
-    `personal`.`persnr`, `panme`, `vorname`, `vwgrad`
-FROM
-    `ahPersonal` `p`,
-    `familienmitglieder` `f`
-WHERE
-    `p`.`persnr` = `f`.`persnr`
-        AND `p`.`persnr` = 10
-GROUP BY `pname`;
+-- outer(left join)
+SELECT p.persnr,pname,vorname,vwgrad
+FROM ahPersonal p LEFT JOIN ahFamilienmitglieder f
+ON p.persnr = f.persnr;
 
 
+-- outer(left join) with IFNULL
+SELECT p.persnr,pname,IFNULL(vorname,'Zehn') AS 'Vorname',IFNULL(vwgrad,'MOOF') AS 'Verwandtschaftsgrad'
+FROM ahPersonal p LEFT JOIN ahFamilienmitglieder f
+ON p.persnr = f.persnr;
 
 
+-- outer(left join) with IFNULL using
+SELECT p.persnr,pname,IFNULL(vorname,'Zehn') AS 'Vorname',IFNULL(vwgrad,'MOOF') AS 'Verwandtschaftsgrad'
+FROM ahPersonal p LEFT JOIN ahFamilienmitglieder f
+USING(persnr);
 
-
-
-
-
-
-
-
-
+-- outer(left join) with where clause
+SELECT p.persnr,pname,vorname AS 'Vorname',vwgrad AS 'Verwandtschaftsgrad'
+FROM ahPersonal p LEFT JOIN ahFamilienmitglieder f
+USING(persnr)
+WHERE vorname IS NULL;
 
 
 

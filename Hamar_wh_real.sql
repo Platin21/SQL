@@ -71,8 +71,7 @@ SELECT
     CONCAT(ROUND((SUM(`amount`) / 100) * 10,2),' Euro') AS 'Spende'
 FROM
     `penalties`
-WHERE YEAR(`pen_date`) = 2013
-GROUP BY YEAR(`pen_date`);
+WHERE YEAR(`pen_date`) = 2013 AND MONTH(`pen_date`) = 12;
 
 # 7. Ersetze die Spieler-Initialien in der Tabelle players (Update der Tabelle!): Die neuen
 # Initialen sollen aus der ersten Stelle Playerno + die ersten zwei Buchstaben des

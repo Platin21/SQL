@@ -1,15 +1,15 @@
 #SAFE MODE!
 DROP DATABASE IF EXISTS `Fahrradverleih`;
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 -- Schema Fahrradverleih
--- -----------------------------------------------------
-CREATE DATABASE IF NOT EXISTS `Fahrradverleih`;
+-- @>>-----------------------------------------------------<<@
+CREATE DATABASE `Fahrradverleih`;
 USE `Fahrradverleih` ;
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 -- Typen
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #SAFE MODE!
 DROP TABLE IF EXISTS `Typen`;
 
@@ -22,9 +22,9 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Typen`
 
 
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 -- Fahrrad
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #SAFE MODE!
 DROP TABLE IF EXISTS `Fahrrad`;
 
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Fahrrad`
 );
 
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 -- Kunde
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #SAFE MODE!
 DROP TABLE IF EXISTS `Kunde`;
 
@@ -63,15 +63,14 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Kunde`
 
 
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 -- Kunde_hat_Fahrrad
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #SAFE MODE!
 DROP TABLE IF EXISTS `Verleih`;
 
 CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Verleih`
 (
-  `VerleihID`		   INT AUTO_INCREMENT,
   `Kunde_kundenNummer` INT NOT NULL,
   `Fahrrad_FahrradId`  INT NOT NULL,
   `Preis` 	   		   INT,
@@ -90,32 +89,31 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Verleih`
     FOREIGN KEY (`Fahrrad_FahrradId`)
     REFERENCES `Fahrradverleih`.`Fahrrad` (`FahrradId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-    PRIMARY KEY(`VerleihID`)
+    ON UPDATE NO ACTION
 );
 
--- -----------------------------------------------------
-#  USE Fahrradverleih AS PRIMARY DATABASE TO INSERT
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
+#  USE Fahrradverleih as primary database to insert
+-- @>>-----------------------------------------------------<<@
 USE `Fahrradverleih`;
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #  INSERT's Kunde
--- -----------------------------------------------------
-INSERT INTO Kunde VALUES(NULL,'Hans','Mair','hans@freemail.com',22-08-1994,'Man');
-INSERT INTO Kunde VALUES(NULL,'Maria','Mair','vertuz@mail.sw',12-08-1994,'Frau');
-INSERT INTO Kunde VALUES(NULL,'Ingrid','Franzl','ingrid@gmx.at',23-08-1994,'Frau');
-INSERT INTO Kunde VALUES(NULL,'Lina','Mair','lina@mair.com',02-08-1994,'Frau');
-INSERT INTO Kunde VALUES(NULL,'Tina','Flakes','tina@tira.com',16-08-1994,'Frau');
-INSERT INTO Kunde VALUES(NULL,'Markus','Flawin','markus@htomail.com',27-05-2001,'Man');
-INSERT INTO Kunde VALUES(NULL,'Herman','Lowan','lown@htomail.com',03-02-1901,'Man');
-INSERT INTO Kunde VALUES(NULL,'Erwin','Maklesch','erwin@htomail.com',27-05-1965,'Man');
-INSERT INTO Kunde VALUES(NULL,'Markus','Flawin','markus@htomail.com',17-03-1967,'Man');
-INSERT INTO Kunde VALUES(NULL,'David','Macleaf','macleaf@htomail.com',23-02-1921,'Man');
+-- @>>-----------------------------------------------------<<@
+INSERT INTO Kunde VALUES(NULL,'Hans','Mair','hans@freemail.com','1994-08-22','Man');
+INSERT INTO Kunde VALUES(NULL,'Maria','Mair','vertuz@mail.sw','1994-08-12','Frau');
+INSERT INTO Kunde VALUES(NULL,'Ingrid','Franzl','ingrid@gmx.at','1994-08-23','Frau');
+INSERT INTO Kunde VALUES(NULL,'Lina','Mair','lina@mair.com','1994-08-02','Frau');
+INSERT INTO Kunde VALUES(NULL,'Tina','Flakes','tina@tira.com','1994-08-06','Frau');
+INSERT INTO Kunde VALUES(NULL,'Markus','Flawin','markus@htomail.com','2001-05-27','Man');
+INSERT INTO Kunde VALUES(NULL,'Herman','Lowan','lown@htomail.com','1901-02-03','Man');
+INSERT INTO Kunde VALUES(NULL,'Erwin','Maklesch','erwin@htomail.com','1965-05-27','Man');
+INSERT INTO Kunde VALUES(NULL,'Markus','Flawin','markus@htomail.com','1967-03-17','Man');
+INSERT INTO Kunde VALUES(NULL,'David','Macleaf','macleaf@htomail.com','1921-02-23','Man');
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #  INSERT's Typen
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 INSERT INTO Typen VALUES (NULL,'Kunstrad');
 INSERT INTO Typen VALUES (NULL,'E-bike-Alltag');
 INSERT INTO Typen VALUES (NULL,'E-bike-Mountn');
@@ -127,30 +125,30 @@ INSERT INTO Typen VALUES (NULL,'Bahnrad');
 INSERT INTO Typen VALUES (NULL,'Mountainbike');
 INSERT INTO Typen VALUES (NULL,'BMX-Rad');
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #  INSERT's Fahrrad
--- -----------------------------------------------------
-INSERT INTO Fahrrad VALUES (NULL, 2 ,6678244  ,19);
-INSERT INTO Fahrrad VALUES (NULL, 8 ,20180197 ,23);
-INSERT INTO Fahrrad VALUES (NULL, 7 ,20180197 ,21);
-INSERT INTO Fahrrad VALUES (NULL, 5 ,20180197 ,23);
-INSERT INTO Fahrrad VALUES (NULL, 3 ,20180197 ,24);
-INSERT INTO Fahrrad VALUES (NULL, 4 ,20180197 ,25);
-INSERT INTO Fahrrad VALUES (NULL, 1 ,20180197 ,26);
+-- @>>-----------------------------------------------------<<@
+INSERT INTO Fahrrad VALUES (NULL, 2  ,6678244  ,19);
+INSERT INTO Fahrrad VALUES (NULL, 8  ,20180197 ,23);
+INSERT INTO Fahrrad VALUES (NULL, 7  ,20180197 ,21);
+INSERT INTO Fahrrad VALUES (NULL, 5  ,20180197 ,23);
+INSERT INTO Fahrrad VALUES (NULL, 3  ,20180197 ,24);
+INSERT INTO Fahrrad VALUES (NULL, 4  ,20180197 ,25);
+INSERT INTO Fahrrad VALUES (NULL, 1  ,20180197 ,26);
 INSERT INTO Fahrrad VALUES (NULL, 10 ,20180197 ,22);
-INSERT INTO Fahrrad VALUES (NULL, 9 ,20180197 ,26);
-INSERT INTO Fahrrad VALUES (NULL, 6 ,20180197 ,19);
+INSERT INTO Fahrrad VALUES (NULL, 9  ,20180197 ,26);
+INSERT INTO Fahrrad VALUES (NULL, 6  ,20180197 ,19);
 
--- -----------------------------------------------------
+-- @>>-----------------------------------------------------<<@
 #  INSERT's Verleih
--- -----------------------------------------------------
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,3 ,7, 34  ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,1 ,6, 54  ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,5 ,1, 67  ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,4 ,8, 53  ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,8 ,3, 213 ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,9 ,4, 45  ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,4 ,5, 684 ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,7 ,9, 64  ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,2 ,4, 89  ,2067-04-22 );
-INSERT INTO Verleih VALUES ( NULL ,2011-02-12 ,NULL ,6 ,2, 21  ,2067-04-22 );
+-- @>>-----------------------------------------------------<<@
+INSERT INTO Verleih VALUES (1,2,34,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (2,4,45,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (3,5,67,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (4,6,56,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (5,7,33,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (6,0,67,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (7,9,14,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (8,3,57,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (9,8,65,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (0,1,76,'1994-08-22','1994-08-22',0);

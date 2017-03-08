@@ -100,16 +100,16 @@ USE `Fahrradverleih`;
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Kunde
 -- @>>-----------------------------------------------------<<@
-INSERT INTO Kunde VALUES(NULL,'Hans','Mair','hans@freemail.com','1994-08-22','Man');
-INSERT INTO Kunde VALUES(NULL,'Maria','Mair','vertuz@mail.sw','1994-08-12','Frau');
-INSERT INTO Kunde VALUES(NULL,'Ingrid','Franzl','ingrid@gmx.at','1994-08-23','Frau');
-INSERT INTO Kunde VALUES(NULL,'Lina','Mair','lina@mair.com','1994-08-02','Frau');
-INSERT INTO Kunde VALUES(NULL,'Tina','Flakes','tina@tira.com','1994-08-06','Frau');
-INSERT INTO Kunde VALUES(NULL,'Markus','Flawin','markus@htomail.com','2001-05-27','Man');
-INSERT INTO Kunde VALUES(NULL,'Herman','Lowan','lown@htomail.com','1901-02-03','Man');
-INSERT INTO Kunde VALUES(NULL,'Erwin','Maklesch','erwin@htomail.com','1965-05-27','Man');
-INSERT INTO Kunde VALUES(NULL,'Markus','Flawin','markus@htomail.com','1967-03-17','Man');
-INSERT INTO Kunde VALUES(NULL,'David','Macleaf','macleaf@htomail.com','1921-02-23','Man');
+INSERT INTO Kunde VALUES(1,'Hans','Mair','hans@freemail.com','1994-08-22','Man');
+INSERT INTO Kunde VALUES(2,'Maria','Mair','vertuz@mail.sw','1994-08-12','Frau');
+INSERT INTO Kunde VALUES(3,'Ingrid','Franzl','ingrid@gmx.at','1994-08-23','Frau');
+INSERT INTO Kunde VALUES(4,'Lina','Mair','lina@mair.com','1994-08-02','Frau');
+INSERT INTO Kunde VALUES(5,'Tina','Flakes','tina@tira.com','1994-08-06','Frau');
+INSERT INTO Kunde VALUES(6,'Markus','Flawin','markus@htomail.com','2001-05-27','Man');
+INSERT INTO Kunde VALUES(7,'Herman','Lowan','lown@htomail.com','1901-02-03','Man');
+INSERT INTO Kunde VALUES(8,'Erwin','Maklesch','erwin@htomail.com','1965-05-27','Man');
+INSERT INTO Kunde VALUES(9,'Markus','Flawin','markus@htomail.com','1967-03-17','Man');
+INSERT INTO Kunde VALUES(10,'David','Macleaf','macleaf@htomail.com','1921-02-23','Man');
 
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Typen
@@ -128,16 +128,16 @@ INSERT INTO Typen VALUES (NULL,'BMX-Rad');
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Fahrrad
 -- @>>-----------------------------------------------------<<@
-INSERT INTO Fahrrad VALUES (NULL, 2  ,6678244  ,19);
-INSERT INTO Fahrrad VALUES (NULL, 8  ,20180197 ,23);
-INSERT INTO Fahrrad VALUES (NULL, 7  ,20180197 ,21);
-INSERT INTO Fahrrad VALUES (NULL, 5  ,20180197 ,23);
-INSERT INTO Fahrrad VALUES (NULL, 3  ,20180197 ,24);
-INSERT INTO Fahrrad VALUES (NULL, 4  ,20180197 ,25);
-INSERT INTO Fahrrad VALUES (NULL, 1  ,20180197 ,26);
-INSERT INTO Fahrrad VALUES (NULL, 10 ,20180197 ,22);
-INSERT INTO Fahrrad VALUES (NULL, 9  ,20180197 ,26);
-INSERT INTO Fahrrad VALUES (NULL, 6  ,20180197 ,19);
+INSERT INTO Fahrrad VALUES (1,  2  ,6678244  ,19);
+INSERT INTO Fahrrad VALUES (2,  8  ,20180197 ,23);
+INSERT INTO Fahrrad VALUES (3,  7  ,20180197 ,21);
+INSERT INTO Fahrrad VALUES (4,  5  ,20180197 ,23);
+INSERT INTO Fahrrad VALUES (5,  3  ,20180197 ,24);
+INSERT INTO Fahrrad VALUES (6,  4  ,20180197 ,25);
+INSERT INTO Fahrrad VALUES (7,  1  ,20180197 ,26);
+INSERT INTO Fahrrad VALUES (8,  10 ,20180197 ,22);
+INSERT INTO Fahrrad VALUES (9,  9  ,20180197 ,26);
+INSERT INTO Fahrrad VALUES (10, 6  ,20180197 ,19);
 
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Verleih
@@ -151,4 +151,4 @@ INSERT INTO Verleih VALUES (6,0,67,'1994-08-22','1994-08-22',0);
 INSERT INTO Verleih VALUES (7,9,14,'1994-08-22','1994-08-22',0);
 INSERT INTO Verleih VALUES (8,3,57,'1994-08-22','1994-08-22',0);
 INSERT INTO Verleih VALUES (9,8,65,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (0,1,76,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES (10,1,76,'1994-08-22','1994-08-22',0);

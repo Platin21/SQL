@@ -73,10 +73,10 @@ CREATE TABLE IF NOT EXISTS `Fahrradverleih`.`Verleih`
 (
   `Kunde_kundenNummer` INT NOT NULL,
   `Fahrrad_FahrradId`  INT NOT NULL,
-  `Preis` 	   		   INT,
-  `EndDatum`   		   DATE,
-  `StartDatum` 		   DATE,
-  `Mahung`     		   BOOL,
+  `Preis` 	   		   INT NULL,
+  `EndDatum`   		   DATE NULL,
+  `StartDatum` 		   DATE NULL,
+  `Mahung`     		   BOOL NULL,
   PRIMARY KEY (`Kunde_kundenNummer`, `Fahrrad_FahrradId`),
   INDEX `fk_Kunde_has_Fahrrad_Fahrrad1_idx` (`Fahrrad_FahrradId` ASC),
   INDEX `fk_Kunde_has_Fahrrad_Kunde_idx` (`Kunde_kundenNummer` ASC),
@@ -142,13 +142,51 @@ INSERT INTO Fahrrad VALUES (10, 6  ,20180197 ,19);
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Verleih
 -- @>>-----------------------------------------------------<<@
-INSERT INTO Verleih VALUES (1,2,34,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (2,4,45,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (3,5,67,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (4,6,56,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (5,7,33,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (6,0,67,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (7,9,14,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (8,3,57,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (9,8,65,'1994-08-22','1994-08-22',0);
-INSERT INTO Verleih VALUES (10,1,76,'1994-08-22','1994-08-22',0);
+INSERT INTO Verleih VALUES ( 1, 2, 34, '1994-08-22',  '1994-08-22', FALSE );  # Same!
+INSERT INTO Verleih VALUES ( 2, 4, 45, '1994-08-22',  '1994-08-22', TRUE  );  # -//-
+INSERT INTO Verleih VALUES ( 3, 5, 67, '1994-08-22',  '1994-08-22', FALSE );  # -//-
+INSERT INTO Verleih VALUES ( 4, 6, 56, '1994-08-22',  '1994-08-22', TRUE  );  # -//-
+INSERT INTO Verleih VALUES ( 5, 7, 33, '1994-08-22',  '1994-08-22', FALSE );  # -//-
+INSERT INTO Verleih VALUES ( 6, 10, 67, '1994-08-22', '1994-08-22', FALSE );  # -//-
+INSERT INTO Verleih VALUES ( 7, 9, 14, '1994-08-22',  '1994-08-22', FALSE );  # -//-
+INSERT INTO Verleih VALUES ( 8, 3, 57, '1994-08-22',  '1994-08-22', TRUE  );  # -//-
+INSERT INTO Verleih VALUES ( 9, 8, 65, '1994-08-22',  '1994-08-22', FALSE );  # -//-
+INSERT INTO Verleih VALUES ( 10, 1, 76, '1994-08-22', '1994-08-22', TRUE  );  ##
+
+-- @>>-----------------------------------------------------<<@
+#     Update Statment
+-- @>>-----------------------------------------------------<<@
+
+#Change Verleih table add->3 days
+UPDATE Verleih
+SET Verleih.EndDatum = DATE_ADD(Verleih.EndDatum,INTERVAL 3 DAY)
+WHERE Kunde_kundenNummer = 2;
+
+-- @>>-----------------------------------------------------<<@
+#     Delete Statment
+-- @>>-----------------------------------------------------<<@
+DELETE FROM Verleih
+WHERE Kunde_kundenNummer = 4;
+
+-- @>>-----------------------------------------------------<<@
+#     Select's Statmens
+-- @>>-----------------------------------------------------<<@
+USE Fahrradverleih;
+
+#Zeige alle kunden an die eine mahung erhalten haben
+SELECT Mahung AS 'Mahung Erhalten'
+FROM Verleih
+WHERE Mahung = TRUE;
+
+#Gib alle Kunden Aus die mehr als 40 Euro Gezahlt haben und Über 29 sind
+SELECT vname AS 'Vorname',nname AS 'Nachname',Preis AS 'Zu Zahlen'
+FROM Kunde
+INNER JOIN Verleih
+ON Kunde.kundenNummer = Verleih.Kunde_kundenNummer
+WHERE Preis > 40 AND YEAR(DATE_SUB(NOW(),INTERVAL 29 YEAR)) > YEAR(gebdat);
+
+SELECT CONCAT(SUM(Preis),'€') AS 'Verdient'
+FROM Verleih;
+
+
+

@@ -187,9 +187,8 @@ INNER JOIN Verleih
 ON Kunde.kundenNummer = Verleih.Kunde_kundenNummer
 WHERE Preis > 40 AND YEAR(DATE_SUB(NOW(),INTERVAL 29 YEAR)) > YEAR(gebdat);
 
-# Gib Die Summe der einnahmen in denn Unterschiedlichen Jahren an
-SELECT SUM(Preis) AS 'Verdient'
-FROM Verleih
-GROUP BY StartDatum;
+#Gib die Summe der Einnahmen in Einem Monat über die Gesamte Zeitspanne der Datenbank an
+SELECT SUM(Preis) AS 'Verdienst Pro Monat'
+FROM Verleih;
 
 

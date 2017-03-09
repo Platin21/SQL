@@ -141,16 +141,16 @@ INSERT INTO Fahrrad VALUES (10, 6  ,20180197 ,19);
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Verleih
 -- @>>-----------------------------------------------------<<@
-INSERT INTO Verleih VALUES ( 1, 2, 34, '2006-10-19',  '2007-02-20', 0   );  # Same!
-INSERT INTO Verleih VALUES ( 2, 4, 45, '2007-07-25',  '2011-10-21', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 3, 5, 67, '2007-10-25',  '2012-06-01', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 4, 6, 56, '2008-09-17',  '2013-05-14', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 5, 7, 33, '2010-05-21',  '2013-11-18', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 6, 10, 67, '2011-04-07', '2016-11-07', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 7, 9, 14, '2011-07-05',  '2017-06-08', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 8, 3, 57, '2015-06-09',  '2017-06-27', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 9, 8, 65, '2016-03-04',  '2017-06-27', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 10, 1, 76, '2017-04-13', '2017-10-24', 1   );  ##
+INSERT INTO Verleih VALUES ( 1, 2, 78, '2006-10-19',  '2007-02-20', 0   );  # Same!
+INSERT INTO Verleih VALUES ( 2, 4, 87, '2007-07-25',  '2011-10-21', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 3, 5, 97, '2007-10-25',  '2012-06-01', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 4, 6, 116, '2008-09-17',  '2013-05-14', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 5, 7, 452, '2010-05-21',  '2013-11-18', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 6, 10, 345, '2011-04-07', '2016-11-07', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 7, 9, 112, '2011-07-05',  '2017-06-08', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 8, 3, 232, '2015-06-09',  '2017-06-27', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 9, 8, 124, '2016-03-04',  '2017-06-27', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 10, 1, 178, '2017-04-13', '2017-10-24', 1   );  ##
 
 -- @>>-----------------------------------------------------<<@
 #     Update Statment
@@ -160,6 +160,8 @@ INSERT INTO Verleih VALUES ( 10, 1, 76, '2017-04-13', '2017-10-24', 1   );  ##
 UPDATE Verleih
 SET Verleih.EndDatum = DATE_ADD(Verleih.EndDatum,INTERVAL 3 DAY)
 WHERE Kunde_kundenNummer = 2;
+
+
 
 -- @>>-----------------------------------------------------<<@
 #     Delete Statment
@@ -180,7 +182,7 @@ AS 'Mahung'
 FROM Verleih
 WHERE Mahung = 1;
 
-#Gib alle Kunden Aus die mehr als 40 Euro Gezahlt haben und Über 29 sind
+#Gib alle Kunden Aus die mehr als 40 pro Monatg Gezahlt haben und Über 29 sind
 SELECT vname AS 'Vorname',nname AS 'Nachname',Preis AS 'Zu Zahlen'
 FROM Kunde
 INNER JOIN Verleih

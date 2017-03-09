@@ -141,16 +141,16 @@ INSERT INTO Fahrrad VALUES (10, 6  ,20180197 ,19);
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Verleih
 -- @>>-----------------------------------------------------<<@
-INSERT INTO Verleih VALUES ( 1, 2, 78, '2006-10-19',  '2007-02-20', 0   );  # Same!
-INSERT INTO Verleih VALUES ( 2, 4, 87, '2007-07-25',  '2011-10-21', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 3, 5, 97, '2007-10-25',  '2012-06-01', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 4, 6, 116, '2008-09-17',  '2013-05-14', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 1, 2, 451, '2006-10-19',  '2007-02-20', 0   );  # Same!
+INSERT INTO Verleih VALUES ( 2, 4, 523, '2007-07-25',  '2011-10-21', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 3, 5, 432, '2007-10-25',  '2012-06-01', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 4, 6, 231, '2008-09-17',  '2013-05-14', 0   );  # -//-
 INSERT INTO Verleih VALUES ( 5, 7, 452, '2010-05-21',  '2013-11-18', 0   );  # -//-
 INSERT INTO Verleih VALUES ( 6, 10, 345, '2011-04-07', '2016-11-07', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 7, 9, 112, '2011-07-05',  '2017-06-08', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 7, 9, 312, '2011-07-05',  '2017-06-08', 1   );  # -//-
 INSERT INTO Verleih VALUES ( 8, 3, 232, '2015-06-09',  '2017-06-27', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 9, 8, 124, '2016-03-04',  '2017-06-27', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 10, 1, 178, '2017-04-13', '2017-10-24', 1   );  ##
+INSERT INTO Verleih VALUES ( 9, 8, 452, '2016-03-04',  '2017-06-27', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 10, 1, 189, '2017-04-13', '2017-10-24', 1   );  ##
 
 -- @>>-----------------------------------------------------<<@
 #     Update Statment
@@ -193,4 +193,5 @@ WHERE Preis > 40 AND YEAR(DATE_SUB(NOW(),INTERVAL 29 YEAR)) > YEAR(gebdat);
 SELECT SUM(Preis) AS 'Verdienst Pro Monat'
 FROM Verleih;
 
+SELECT CONCAT('Es wurden Breits:',)
 

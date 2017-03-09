@@ -138,20 +138,19 @@ INSERT INTO Fahrrad VALUES (7,  1  ,20180197 ,26);
 INSERT INTO Fahrrad VALUES (8,  10 ,20180197 ,22);
 INSERT INTO Fahrrad VALUES (9,  9  ,20180197 ,26);
 INSERT INTO Fahrrad VALUES (10, 6  ,20180197 ,19);
-
 -- @>>-----------------------------------------------------<<@
 #  INSERT's Verleih
 -- @>>-----------------------------------------------------<<@
-INSERT INTO Verleih VALUES ( 1, 2, 34, '1994-08-22',  '1994-08-22', FALSE );  # Same!
-INSERT INTO Verleih VALUES ( 2, 4, 45, '1994-08-22',  '1994-08-22', TRUE  );  # -//-
-INSERT INTO Verleih VALUES ( 3, 5, 67, '1994-08-22',  '1994-08-22', FALSE );  # -//-
-INSERT INTO Verleih VALUES ( 4, 6, 56, '1994-08-22',  '1994-08-22', TRUE  );  # -//-
-INSERT INTO Verleih VALUES ( 5, 7, 33, '1994-08-22',  '1994-08-22', FALSE );  # -//-
-INSERT INTO Verleih VALUES ( 6, 10, 67, '1994-08-22', '1994-08-22', FALSE );  # -//-
-INSERT INTO Verleih VALUES ( 7, 9, 14, '1994-08-22',  '1994-08-22', FALSE );  # -//-
-INSERT INTO Verleih VALUES ( 8, 3, 57, '1994-08-22',  '1994-08-22', TRUE  );  # -//-
-INSERT INTO Verleih VALUES ( 9, 8, 65, '1994-08-22',  '1994-08-22', FALSE );  # -//-
-INSERT INTO Verleih VALUES ( 10, 1, 76, '1994-08-22', '1994-08-22', TRUE  );  ##
+INSERT INTO Verleih VALUES ( 1, 2, 34, '2006-10-19',  '2007-02-20', 0   );  # Same!
+INSERT INTO Verleih VALUES ( 2, 4, 45, '2007-07-25',  '2011-10-21', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 3, 5, 67, '2007-10-25',  '2012-06-01', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 4, 6, 56, '2008-09-17',  '2013-05-14', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 5, 7, 33, '2010-05-21',  '2013-11-18', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 6, 10, 67, '2011-04-07', '2016-11-07', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 7, 9, 14, '2011-07-05',  '2017-06-08', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 8, 3, 57, '2015-06-09',  '2017-06-27', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 9, 8, 65, '2016-03-04',  '2017-06-27', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 10, 1, 76, '2017-04-13', '2017-10-24', 1   );  ##
 
 -- @>>-----------------------------------------------------<<@
 #     Update Statment
@@ -173,10 +172,13 @@ WHERE Kunde_kundenNummer = 4;
 -- @>>-----------------------------------------------------<<@
 USE Fahrradverleih;
 
-#Zeige alle kunden an die eine mahung erhalten haben
-SELECT Mahung AS 'Mahung Erhalten'
+#Zeige alle kundenNummern an die eine mahung erhalten. Gib die Mahung als Erhalten aus
+SELECT Kunde_kundenNummer AS 'Kunden Nummer',CASE Mahung
+	WHEN Mahung = 1 THEN 'Erhalten'
+END
+AS 'Mahung'
 FROM Verleih
-WHERE Mahung = TRUE;
+WHERE Mahung = 1;
 
 #Gib alle Kunden Aus die mehr als 40 Euro Gezahlt haben und Über 29 sind
 SELECT vname AS 'Vorname',nname AS 'Nachname',Preis AS 'Zu Zahlen'
@@ -185,8 +187,9 @@ INNER JOIN Verleih
 ON Kunde.kundenNummer = Verleih.Kunde_kundenNummer
 WHERE Preis > 40 AND YEAR(DATE_SUB(NOW(),INTERVAL 29 YEAR)) > YEAR(gebdat);
 
-SELECT CONCAT(SUM(Preis),'€') AS 'Verdient'
-FROM Verleih;
-
+# Gib Die Summe der einnahmen in denn Unterschiedlichen Jahren an
+SELECT SUM(Preis) AS 'Verdient'
+FROM Verleih
+GROUP BY StartDatum;
 
 

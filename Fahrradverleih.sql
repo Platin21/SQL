@@ -175,7 +175,8 @@ WHERE Kunde_kundenNummer = 4;
 USE Fahrradverleih;
 
 #Zeige alle kundenNummern an die eine mahung erhalten. Gib die Mahung als Erhalten aus
-SELECT Kunde_kundenNummer AS 'Kunden Nummer',CASE Mahung
+SELECT Kunde_kundenNummer AS 'Kunden Nummer',
+CASE Mahung
 	WHEN Mahung = 1 THEN 'Erhalten'
 END
 AS 'Mahung'
@@ -195,8 +196,27 @@ FROM Verleih;
 
 # Undefined behavior! -> Datediff should return time span between full dates but does not!
 # Workaround -> Immpossible
-SELECT CONCAT('Es wurden Breits:',(Preis * DATEDIFF(DAY,StartDatum,EndDatum)),'von',vname,'Bezahlt')
+SELECT CONCAT('Es wurden Breits:',(Preis * DATEDIFF(EndDatum,StartDatum)),'von',vname,'Bezahlt')
 FROM Kunde
 INNER JOIN Verleih
 ON Kunde.kundenNummer = Verleih.Kunde_kundenNummer;
+
+# Gib alle Bisher Ausgeliehen Fahrräder von einem Kunden aus
+SELECT
+CASE COUNT(*)
+	WHEN 1 THEN CONCAT('Es wurde ein Fahrrad ausgehliehen von ',vname)
+    ELSE CONCAT('Es wurden ',COUNT(*),' Fahrräder ausgehliehen von ',vname)
+END AS ''
+FROM Kunde
+INNER JOIN Verleih
+ON Kunde.kundenNummer = Verleih.Kunde_kundenNummer
+GROUP BY
+Kunde.kundenNummer;
+
+# Gib den Durchschnitts Preis pro Monat an
+SELECT AVG(Preis) AS 'Druchschnitt'
+FROM Verleih;
+
+
+
 

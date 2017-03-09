@@ -193,5 +193,10 @@ WHERE Preis > 40 AND YEAR(DATE_SUB(NOW(),INTERVAL 29 YEAR)) > YEAR(gebdat);
 SELECT SUM(Preis) AS 'Verdienst Pro Monat'
 FROM Verleih;
 
-SELECT CONCAT('Es wurden Breits:',)
+# Undefined behavior! -> Datediff should return time span between full dates but does not!
+# Workaround -> Immpossible
+SELECT CONCAT('Es wurden Breits:',(Preis * DATEDIFF(DAY,StartDatum,EndDatum)),'von',vname,'Bezahlt')
+FROM Kunde
+INNER JOIN Verleih
+ON Kunde.kundenNummer = Verleih.Kunde_kundenNummer;
 

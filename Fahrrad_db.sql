@@ -175,7 +175,7 @@ WHERE kundenNummer = 4;
 -- @>>-----------------------------------------------------<<@
 USE Fahrradverleih;
 
-#Zeige alle kundenNummern an die eine mahung erhalten. Gib die Mahung als Erhalten aus
+# 1 Zeige alle kundenNummern an die eine mahung erhalten. Gib die Mahung als Erhalten aus
 SELECT kundenNummer AS 'Kunden Nummer',
 CASE Mahung
 	WHEN Mahung = 1 THEN 'Erhalten'
@@ -184,25 +184,25 @@ AS 'Mahung'
 FROM Verleih
 WHERE Mahung = 1;
 
-#Gib alle Kunden Aus die mehr als 40 pro Monatg Gezahlt haben und Über 29 sind
+# 2 Gib alle Kunden Aus die mehr als 40 pro Monatg Gezahlt haben und Über 29 sind
 SELECT vname AS 'Vorname',nname AS 'Nachname',Preis AS 'Zu Zahlen'
 FROM Kunde
 INNER JOIN Verleih
 ON Kunde.kundenNummer = Verleih.kundenNummer
 WHERE Preis > 40 AND YEAR(DATE_SUB(NOW(),INTERVAL 29 YEAR)) > YEAR(gebdat);
 
-#Gib die Summe der Einnahmen in Einem Monat über die Gesamte Zeitspanne der Datenbank an
+# 3 Gib die Summe der Einnahmen in Einem Monat über die Gesamte Zeitspanne der Datenbank an
 SELECT SUM(Preis) AS 'Verdienst Pro Monat'
 FROM Verleih;
 
-# Undefined behavior! -> Datediff should return time span between full dates but does not!
+# 4 Undefined behavior! -> Datediff should return time span between full dates but does not!
 # Workaround -> Immpossible
 SELECT CONCAT('Es wurden Breits:',(Preis * DATEDIFF(EndDatum,StartDatum)),'von',vname,'Bezahlt')
 FROM Kunde
 INNER JOIN Verleih
 ON Kunde.kundenNummer = Verleih.kundenNummer;
 
-# Gib alle Bisher Ausgeliehen Fahrräder von einem Kunden aus
+# 5 Gib alle Bisher Ausgeliehen Fahrräder von einem Kunden aus
 SELECT
 CASE COUNT(*)
 	WHEN 1 THEN CONCAT('Es wurde ein Fahrrad ausgehliehen von ',vname)
@@ -214,29 +214,37 @@ ON Kunde.kundenNummer = Verleih.kundenNummer
 GROUP BY
 Kunde.kundenNummer;
 
-# Gib den Durchschnitt der Einahnamen pro Monat an im jahr 2006 an
+# 6 Gib den Durchschnitt der Einahnamen pro Monat an im jahr 2006 an
 SELECT ROUND(AVG(Preis),2) AS 'Druchschnitt'
 FROM Verleih
 LEFT JOIN Kunde
 ON Kunde.kundenNummer = Verleih.kundenNummer;
 
-# Gib alle Kunden aus die ein Fahrrad ausgeliehen haben und bei 
+# 7 Gib alle Kunden aus die ein Fahrrad ausgeliehen haben und bei 
 # denen die Keines geliehen haben füge eine Linie ein 
 SELECT k.kundenNummer AS 'Kundennummer',k.vname AS 'Vorname', ifnull(v.Preis,"___") AS 'Preis'
 FROM Kunde k
 LEFT JOIN Verleih v
 ON k.kundenNummer = v.kundenNummer;
 
-# Wegen der eines Gutscheins zum Geburtstag soll in diesem Statment gescheckt werden
+# 8 Wegen der eines Gutscheins zum Geburtstag soll in diesem Statment gescheckt werden
 # zurückgegeben soll der Name und Nachname 
 SELECT vname AS 'Vorname',nname AS 'Nachname' 
 FROM Kunde
 WHERE DAY(gebdat) = DAY(NOW()) AND MONTH(gebdat) = MONTH(NOW());
 
-# Gibt alle Preise in Einer aufsteigenden Liste an gibt aber nur 5 Werte aus
+# 9 Gibt alle Preise in Einer aufsteigenden Liste an gibt aber nur 5 Werte aus
 SELECT CONCAT(Preis,' Euro')
 FROM Verleih
 ORDER BY Preis DESC 
 LIMIT 5;
 
-# Gibt an welcher kunde welchen Fahrrad typen ausgehliehen hat
+# 10 Gibt an was für einen Fahrrad Typ welcher kunde asugeliehen hat
+SELECT vname AS 'Vorname',Name AS 'Typen Name'
+FROM Fahrrad f
+INNER JOIN Typen t
+ON t.TypenID = f.TypenID
+INNER JOIN Verleih v
+ON v.Fahrrad_FahrradId = f.FahrradId
+INNER JOIN Kunde k
+ON v.kundenNummer = k.kundenNummer;

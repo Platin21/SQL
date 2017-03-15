@@ -148,10 +148,10 @@ INSERT INTO Verleih VALUES ( 3, 5, 432, '2007-10-25',  '2012-06-01', 1   );  # -
 INSERT INTO Verleih VALUES ( 4, 6, 231, '2008-09-17',  '2013-05-14', 0   );  # -//-
 INSERT INTO Verleih VALUES ( 5, 7, 452, '2010-05-21',  '2013-11-18', 0   );  # -//-
 INSERT INTO Verleih VALUES ( 6, 10, 345, '2011-04-07', '2016-11-07', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 7, 9, 312, '2011-07-05',  '2017-06-08', 1   );  # -//-
-INSERT INTO Verleih VALUES ( 8, 3, 232, '2015-06-09',  '2017-06-27', 1   );  # -//-
+INSERT INTO Verleih VALUES ( 7, 9, 312, '2011-07-05',  '2017-06-08', 0   );  # -//-
+INSERT INTO Verleih VALUES ( 8, 3, 232, '2015-06-09',  '2017-06-27', 0   );  # -//-
 INSERT INTO Verleih VALUES ( 9, 8, 452, '2016-03-04',  '2017-06-27', 0   );  # -//-
-INSERT INTO Verleih VALUES ( 10, 1, 189, '2017-04-13', '2017-10-24', 1   );  ##
+INSERT INTO Verleih VALUES ( 10, 1, 189, '2017-04-13', '2017-10-24', 0   );  ##
 
 -- @>>-----------------------------------------------------<<@
 #     Update Statment
@@ -248,3 +248,11 @@ INNER JOIN Verleih v
 ON v.Fahrrad_FahrradId = f.FahrradId
 INNER JOIN Kunde k
 ON v.kundenNummer = k.kundenNummer;
+
+# 11. Gib an Welche Leute bis heute noch nicht gezahlt haben
+SELECT vname,nname,Mahung
+FROM Kunde k
+INNER JOIN Verleih v
+ON k.kundenNummer = v.kundenNummer
+WHERE Mahung = 1;
+

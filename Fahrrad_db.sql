@@ -256,3 +256,10 @@ INNER JOIN Verleih v
 ON k.kundenNummer = v.kundenNummer
 WHERE Mahung = 1;
 
+# Gib alle Kunden aus die sich mehr als ein Rad ausgeliehen haben
+SELECT CONCAT(vname,' ',nname) AS 'Kunden Name'
+FROM Kunde
+INNER JOIN Verleih
+ON Kunde.kundenNummer = Verleih.kundenNummer
+GROUP BY Verleih.kundenNummer
+HAVING COUNT(*) > 1;
